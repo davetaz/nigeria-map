@@ -21,6 +21,14 @@ Unfortunately MapMaker does not offer Burkina Faso provinces' map, although, wit
 
 The bigger the value used, the less detail is lost in creating the GeoJSON file. A value of 3 was used for the production of the GeoJSON files distributed with this project. See Bjørn Sandvik's great blog post ["How to minify GeoJSON files?"](http://blog.thematicmapping.org/2012/11/how-to-minify-geojson-files.html?utm_source=feedburner&utm_medium=feed&utm_campaign=Feed%3A+thematicmapping+%28thematic+mapping+blog%29) for more detail.
 
+##Adding functionality to the example map
+
+![](images/screenshot.png)
+
+The core JavaScript library used to build the [example choropleth map](http://digital-contraptions-imaginarium.github.io/Burkina-Faso-map/) that comes with this project is [Leaflet](http://leafletjs.com/). It is important that you study the tutorials and gain some degree of proficiency with it before you decide to add functionality on top of the existing code.
+
+[GeoJSON](http://geojson.org/) though is a standard open format that can be easily enhanced and transformed for many other kinds of uses. In that case, just use [the GeoJSON files](data/processed) as your starting point, and have fun!
+
 ##Licence
 
 The original Burkina Faso maps' shapefiles are sourced from [MapMaker Ltd.'s "Map Library" service](http://www.mapmakerdata.co.uk.s3-website-eu-west-1.amazonaws.com/library/index.htm): a source of public domain basic map data concerning administrative boundaries in Africa. MapMaker's sources are described on [this web page](http://www.mapmakerdata.co.uk.s3-website-eu-west-1.amazonaws.com/library/sources.htm) on their website.
