@@ -61,7 +61,7 @@ var onEachFeature = function (feature, layer) {
 	}
 
 	var openLicenceDetail = function (e) {
-		window.open("https://github.com/Digital-Contraptions-Imaginarium/Burkina-Faso-map", "_blank");
+		window.open("http://digital-contraptions-imaginarium.github.io/Burkina-Faso-map/", "_blank");
 	}
 
 	layer.on({

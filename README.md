@@ -31,7 +31,7 @@ The core JavaScript library used to build the [example choropleth map](http://di
 
 ##Embedding the map in a document
 
-You don't need to do anything, the code is already suitable for embedding, see [this example](embed_test.html). 
+You don't need to do anything, the code is already suitable for embedding, see [this example](embed_test.html), and [this](http://digital-contraptions-imaginarium.github.io/Burkina-Faso-map/embed_test.html) is how it looks like. 
 
 ##Licence
 
