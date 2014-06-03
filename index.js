@@ -122,7 +122,7 @@ var initMap = function () {
 		// set up the map
 		var defaultLayersToDisplay = [ osm ];
 		if (qs.regions != "hide") defaultLayersToDisplay = defaultLayersToDisplay.concat(layers["Regions"]);
-		// if (qs.provinces != "hide") defaultLayersToDisplay = defaultLayersToDisplay.concat(layers["Departements"]);
+		if (qs.departments == "show") defaultLayersToDisplay = defaultLayersToDisplay.concat(layers["Departments"]);
 		map = new L.Map('map', {
 			layers: defaultLayersToDisplay,	
 			center: new L.LatLng(parseFloat(qs.lat) || 12.0, parseFloat(qs.lon) || -0.5),	

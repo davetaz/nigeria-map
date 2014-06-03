@@ -29,6 +29,10 @@ The core JavaScript library used to build the [example choropleth map](http://di
 
 [GeoJSON](http://geojson.org/) though is a standard open format that can be easily enhanced and transformed for many other kinds of uses. In that case, just use [the GeoJSON files](data/processed) as your starting point, and have fun!
 
+##Embedding the map in a document
+
+You don't need to do anything, the code is already suitable for embedding, see [this example](embed_test.html). 
+
 ##Licence
 
 The original Burkina Faso maps' shapefiles are sourced from [MapMaker Ltd.'s "Map Library" service](http://www.mapmakerdata.co.uk.s3-website-eu-west-1.amazonaws.com/library/index.htm): a source of public domain basic map data concerning administrative boundaries in Africa. MapMaker's sources are described on [this web page](http://www.mapmakerdata.co.uk.s3-website-eu-west-1.amazonaws.com/library/sources.htm) on their website.
