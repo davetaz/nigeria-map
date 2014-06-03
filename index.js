@@ -1,13 +1,13 @@
 var	CONFIGURATION = {
 		"layers": {
 			// the order is relevant! from the bottom to the top one
-			"Provinces": {
-				"dataFile": "/data/processed/burkinaFaso_provinces.json",
+			"Departments": {
+				"dataFile": "data/processed/burkinaFaso_departments.json",
 				"dataType": "geojson",
 				"colour": "orange",
 			},
 			"Regions": {
-				"dataFile": "/data/processed/burkinaFaso_regions.json",
+				"dataFile": "data/processed/burkinaFaso_regions.json",
 				"dataType": "geojson",
 				"colour": "red",
 			},
@@ -122,7 +122,7 @@ var initMap = function () {
 		// set up the map
 		var defaultLayersToDisplay = [ osm ];
 		if (qs.regions != "hide") defaultLayersToDisplay = defaultLayersToDisplay.concat(layers["Regions"]);
-		// if (qs.provinces != "hide") defaultLayersToDisplay = defaultLayersToDisplay.concat(layers["Provinces"]);
+		// if (qs.provinces != "hide") defaultLayersToDisplay = defaultLayersToDisplay.concat(layers["Departements"]);
 		map = new L.Map('map', {
 			layers: defaultLayersToDisplay,	
 			center: new L.LatLng(parseFloat(qs.lat) || 12.0, parseFloat(qs.lon) || -0.5),	

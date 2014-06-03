@@ -1,21 +1,23 @@
 Burkina-Faso-map
 ================
 
-The objective of this small project is to prepare a GeoJSON representation of Burkina Faso's regions and provinces to be offered by the African country's new open data portal to its users.
+The objective of this small project is to prepare a GeoJSON representation of Burkina Faso's administrative regions and departments to be offered by the African country's government together with the new open data portal to its users. The source of the maps is MapMaker Ltd.'s "Map Library" service (read the Licence chapter below for more information).
 
 ##Map format conversion
 
-Conversion from shapefile to GeoJSON was performed using the [ogr2ogr utility](http://www.gdal.org/ogr2ogr.html), part of [GDAL](http://www.gdal.org/index.html), the open source geospatial data abstraction library. 
+Conversion from MapMaker's shapefile to GeoJSON was performed using the [ogr2ogr utility](http://www.gdal.org/ogr2ogr.html), part of [GDAL](http://www.gdal.org/index.html), the open source geospatial data abstraction library. 
 
 After unzipping MapMakers' original shapefiles in *data/raw*, Two simple commands are sufficient to perform the conversion:
 
     ogr2ogr -f data/processed/geoJSON burkinaFaso_regions.json data/raw/BUF-level_1_SHP/BUF-level_1.shp
-    ogr2ogr -f data/processed/geoJSON burkinaFaso_provinces.json data/raw/BUF_admin_SHP/BUF.shp
+    ogr2ogr -f data/processed/geoJSON burkinaFaso_departments.json data/raw/BUF_admin_SHP/BUF.shp
+
+Unfortunately MapMaker does not offer the provinces' map, although with a little effort that could be built by assembling the 
 
 It is useful to consider the option to make the maps more suitable to bad or slow Internet connectivity by creating smaller GeoJSON files. This is achieved by losing some of the detail in the regions and provinces' boundaries definition, using the *-lco COORDINATE_PRECISION=[target_precision]* to the above commands, where *target_precision* is an integer >=1, e.g.:
 
     ogr2ogr -lco COORDINATE_PRECISION=1 -f data/processed/geoJSON burkinaFaso_regions.json data/raw/BUF-level_1_SHP/BUF-level_1.shp
-    ogr2ogr -lco COORDINATE_PRECISION=1 -f data/processed/geoJSON burkinaFaso_provinces.json data/raw/BUF_admin_SHP/BUF.shp
+    ogr2ogr -lco COORDINATE_PRECISION=1 -f data/processed/geoJSON burkinaFaso_departments.json data/raw/BUF_admin_SHP/BUF.shp
 
 The bigger the value used, the less detail is lost in creating the GeoJSON file. See Bjørn Sandvik's great blog post ["How to minify GeoJSON files?"](http://blog.thematicmapping.org/2012/11/how-to-minify-geojson-files.html?utm_source=feedburner&utm_medium=feed&utm_campaign=Feed%3A+thematicmapping+%28thematic+mapping+blog%29) for more detail.
 
