@@ -61,11 +61,7 @@ var onEachFeature = function (feature, layer) {
 	}
 
 	var openLicenceDetail = function (e) {
-		if (!qs.embed) {
-			window.open("https://www.og.decc.gov.uk/eng/fox/decc/PED300X/licence?LICENCE_TYPE=" + e.target.feature.properties["LICENCE_TY"] + "&LICENCE_NO="  + e.target.feature.properties["LICENCE"].match(/\d+/g), "_blank");
-		} else {
-			window.open("https://github.com/Digital-Contraptions-Imaginarium/oil-and-gas-licensing-map", "_blank");
-		}
+		window.open("https://github.com/Digital-Contraptions-Imaginarium/Burkina-Faso-map", "_blank");
 	}
 
 	layer.on({
@@ -112,14 +108,12 @@ var initMap = function () {
 
 		// create the tile layer with correct attribution
 		var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-			osmAttrib='DECC <a target="_blank" href="https://www.gov.uk/oil-and-gas-onshore-maps-and-gis-shapefiles">oil and gas licensing data</a> is available under the <a target="_blank" href="http://www.nationalarchives.gov.uk/doc/open-government-licence/version/2/">Open Government Licence v2.0</a> | Map data &copy; <a target="_blank" href="http://www.openstreetmap.org/about">OpenStreetMap</a> contributors' + (!qs.embed ? "" : '| See the full website at <a target="_blank" href="http://dico.im/oil-and-gas-licensing-map/">Digital Contraptions Imaginarium</a>'),
+			osmAttrib='The source Burkina Faso maps are published by <a target="_blank" href="http://www.mapmakerdata.co.uk.s3-website-eu-west-1.amazonaws.com/library/index.htm">MapMaker</a> | Map data &copy; <a target="_blank" href="http://www.openstreetmap.org/about">OpenStreetMap</a> contributors' + (!qs.embed ? "" : '| See the full website at <a target="_blank" href="http://dico.im/oil-and-gas-licensing-map/">Digital Contraptions Imaginarium</a>'),
 			osm = new L.TileLayer(osmUrl, { minZoom: 1, maxZoom: 12, attribution: osmAttrib });		
 
 		// set up the data layers
 		_.each(_.keys(configuration.layers), function (layerName) {
 			layers[layerName] = L.geoJson(configuration.layers[layerName].geoJSON, { 
-				/* TODO I have tried defining styling functions in CONFIGURATION 
-				but then layer.resetStyle fails */
 				style: style, 
 				onEachFeature: onEachFeature,
 			});
@@ -128,11 +122,11 @@ var initMap = function () {
 		// set up the map
 		var defaultLayersToDisplay = [ osm ];
 		if (qs.regions != "hide") defaultLayersToDisplay = defaultLayersToDisplay.concat(layers["Regions"]);
-		if (qs.provinces != "hide") defaultLayersToDisplay = defaultLayersToDisplay.concat(layers["Provinces"]);
+		// if (qs.provinces != "hide") defaultLayersToDisplay = defaultLayersToDisplay.concat(layers["Provinces"]);
 		map = new L.Map('map', {
 			layers: defaultLayersToDisplay,	
-			center: new L.LatLng(parseFloat(qs.lat) || 54.0, parseFloat(qs.lon) || 1.5),	
-			zoom: parseInt(qs.zoom) || 6,
+			center: new L.LatLng(parseFloat(qs.lat) || 12.0, parseFloat(qs.lon) || -0.5),	
+			zoom: parseInt(qs.zoom) || 7,
 			zoomControl: false,
 		});
 
@@ -140,7 +134,7 @@ var initMap = function () {
 			titleControl = L.control({ position: 'topleft' });
 			titleControl.onAdd = function (map) {
 			    this._div = L.DomUtil.create('div', 'titleControl'); 
-			    this._div.innerHTML = "<h1>oil-and-gas-licensing-map</h1><p>This is a map of existing and potential future oil and gas onshore licences for petroleum exploration and production in the UK (not just shale gas), derived from data made available by the Department of Energy and Climate Change. Please read <a href=\"https://github.com/Digital-Contraptions-Imaginarium/oil-and-gas-licensing-map\">here</a> for more information.</p><p>Information is provided \"as is\", without warranty of any kind, express or implied. Don't buy your next house basing your decision on this map! :-)</p>";
+			    this._div.innerHTML = "<h1>Burkina-Faso-map</h1><p>This is an example interactive choropleth Burkina Faso map, built using <a href='http://leafletjs.com/'>Leaflet</a>. Please read <a href=\"https://github.com/Digital-Contraptions-Imaginarium/Burkina-Faso-map\">here</a> for more information.</p>";
 			    return this._div;
 			};
 			titleControl.addTo(map);
@@ -168,27 +162,12 @@ var initMap = function () {
 			infoControl.update = function (properties) {
 				if (properties) {
 			    	this._div.innerHTML = 
-			    		'<h4>Licensing info</h4>' + 
+			    		'<h4>Property browser</h4>' + 
 			    		_.reduce(_.keys(properties).sort(), function (memo, propertyName) {
 		    				// TODO: there are several GeoJSON features' properties 
 		    				// in the DECC data that have null properties
 			    			if (properties[propertyName] != null) {
 					    		switch (propertyName.toLowerCase()) {
-					    			case "round":
-					    				// just rename the label
-										return memo + "<b>Licensing Round No.</b><br />" + _.capitalize(properties[propertyName].toString().toLowerCase()) + "<br />";
-										break
-									case "licence":
-										return memo + "<b>Licence</b><br />" + _.capitalize(properties[propertyName].toString().toLowerCase()) + "<br />(double-click to see the details on the DECC website)<br />";
-										break;
-					    			case "licence_ty":
-					    				// replace the value with the readable licence type
-										return memo + "<b>Licence Type</b><br />" + LICENCE_TYPES[properties["LICENCE_TY"].toLowerCase()] + "<br />";
-					    				break;
-					    			case "licencetype":
-					    				// do nothing, these are for internal use
-					    				return memo;
-					    				break;
 					    			default:
 										return memo + "<b>" + _.capitalize(propertyName.toLowerCase()) + "</b><br />" + _.capitalize(properties[propertyName].toString().toLowerCase()) + "<br />";
 					    		}
@@ -197,7 +176,7 @@ var initMap = function () {
 					    	}
 			    		}, "");
 			    } else {
-			    	this._div.innerHTML = '<h4>Licensing info</h4>Hover over the map to select an area of interest' 
+			    	this._div.innerHTML = "<h4>Property browser</h4><p>Hover over a region or province<br>to see what data was provided<br>together with the original map files.<br>You can enhance this data in many<br>ways, e.g. by adding it to the source<br>GeoJSON files.</p><p>Please note that it is very likely you<br>will need to enforce consistency<br>between the spelling of the regions'<br>and provinces' names in the map<br>with the ones you have in your own<br>data.</p>";
 			    }
 			};
 			infoControl.addTo(map);
