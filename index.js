@@ -108,7 +108,7 @@ var initMap = function () {
 
 		// create the tile layer with correct attribution
 		var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-			osmAttrib='The source Burkina Faso maps are published by <a target="_blank" href="http://www.mapmakerdata.co.uk.s3-website-eu-west-1.amazonaws.com/library/index.htm">MapMaker</a> | Map data &copy; <a target="_blank" href="http://www.openstreetmap.org/about">OpenStreetMap</a> contributors' + (!qs.embed ? "" : '| See the full website at <a target="_blank" href="http://dico.im/oil-and-gas-licensing-map/">Digital Contraptions Imaginarium</a>'),
+			osmAttrib='The data for the Burkina Faso region and department boundaries is published by <a target="_blank" href="http://www.mapmakerdata.co.uk.s3-website-eu-west-1.amazonaws.com/library/index.htm">MapMaker</a> | Map data &copy; <a target="_blank" href="http://www.openstreetmap.org/about">OpenStreetMap</a> contributors' + (!qs.embed ? "" : '| See the full website at <a target="_blank" href="http://dico.im/oil-and-gas-licensing-map/">Digital Contraptions Imaginarium</a>'),
 			osm = new L.TileLayer(osmUrl, { minZoom: 1, maxZoom: 12, attribution: osmAttrib });		
 
 		// set up the data layers
@@ -176,7 +176,7 @@ var initMap = function () {
 					    	}
 			    		}, "");
 			    } else {
-			    	this._div.innerHTML = "<h4>Property browser</h4><p>Hover over a region or province<br>to see what data was provided<br>together with the original map files.<br>You can enhance this data in many<br>ways, e.g. by adding it to the source<br>GeoJSON files.</p><p>Please note that it is very likely you<br>will need to enforce consistency<br>between the spelling of the regions'<br>and provinces' names in the map<br>with the ones you have in your own<br>data.</p>";
+			    	this._div.innerHTML = "<h4>Property browser</h4><p>Hover over a region or department<br>to see what data was provided<br>together with the original map files.<br>You can enhance this data in many<br>ways, e.g. by adding it to the source<br>GeoJSON files.</p><p>Please note that it is very likely you<br>will need to enforce consistency<br>between the spelling of the regions'<br>and provinces' names in the map<br>with the ones you have in your own<br>data.</p>";
 			    }
 			};
 			infoControl.addTo(map);
