@@ -108,7 +108,7 @@ var initMap = function () {
 
 		// create the tile layer with correct attribution
 		var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-			osmAttrib='The data for the Burkina Faso region and department boundaries is published by <a target="_blank" href="http://www.mapmakerdata.co.uk.s3-website-eu-west-1.amazonaws.com/library/index.htm">MapMaker</a> | Map data &copy; <a target="_blank" href="http://www.openstreetmap.org/about">OpenStreetMap</a> contributors' + (!qs.embed ? "" : '| See the full website at <a target="_blank" href="http://dico.im/oil-and-gas-licensing-map/">Digital Contraptions Imaginarium</a>'),
+			osmAttrib='The data for the Burkina Faso region and department boundaries is published by <a target="_blank" href="http://www.mapmakerdata.co.uk.s3-website-eu-west-1.amazonaws.com/library/index.htm">MapMaker</a> | Map data &copy; <a target="_blank" href="http://www.openstreetmap.org/about">OpenStreetMap</a> contributors' + (!qs.embed ? "" : '| See the full website at <a target="_blank" href="http://digital-contraptions-imaginarium.github.io/Burkina-Faso-map/</a>'),
 			osm = new L.TileLayer(osmUrl, { minZoom: 1, maxZoom: 12, attribution: osmAttrib });		
 
 		// set up the data layers
@@ -164,8 +164,6 @@ var initMap = function () {
 			    	this._div.innerHTML = 
 			    		'<h4>Property browser</h4>' + 
 			    		_.reduce(_.keys(properties).sort(), function (memo, propertyName) {
-		    				// TODO: there are several GeoJSON features' properties 
-		    				// in the DECC data that have null properties
 			    			if (properties[propertyName] != null) {
 					    		switch (propertyName.toLowerCase()) {
 					    			default:
