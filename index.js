@@ -22,6 +22,7 @@ var configuration,
 	titleControl, 
 	zoomControl;
 
+
 var qs = (function(a) {
     if (a == "") return {};
     var b = {};
@@ -47,7 +48,19 @@ var onEachFeature = function (feature, layer) {
 	    if (!L.Browser.ie && !L.Browser.opera) {
 	        layer.bringToFront();
 	    }
-		if (!qs.embed) infoControl.update(layer.feature.properties);
+		if (!qs.embed && layer.feature.properties.ID) {
+			ID = layer.feature.properties.ID;
+			console.log(ID);
+			d3.csv('data/statistics/'  + ID + ' State December 2012 Allocations.csv',function(data) {
+				out = {}
+				for (item in data) {
+					console.log(data[item]);
+					out[data[item]["Local Governments Councils"]] = data[item]["Total Allocation"];
+				}	
+				console.log(out);
+				infoControl.update(out);
+			});
+		}
 	}
 
 	var resetHighlight = function (e) {
@@ -125,8 +138,8 @@ var initMap = function () {
 		if (qs.departments == "show") defaultLayersToDisplay = defaultLayersToDisplay.concat(layers["Departments"]);
 		map = new L.Map('map', {
 			layers: defaultLayersToDisplay,	
-			center: new L.LatLng(parseFloat(qs.lat) || 12.0, parseFloat(qs.lon) || -0.5),	
-			zoom: parseInt(qs.zoom) || 7,
+			center: new L.LatLng(parseFloat(qs.lat) || 10, parseFloat(qs.lon) || 8),	
+			zoom: parseInt(qs.zoom) || 6,
 			zoomControl: false,
 		});
 
