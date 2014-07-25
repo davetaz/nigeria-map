@@ -61,7 +61,7 @@ var onEachFeature = function (feature, layer) {
 	}
 
 	var openLicenceDetail = function (e) {
-		window.open("http://digital-contraptions-imaginarium.github.io/Burkina-Faso-map/", "_blank");
+		window.open("http://davetaz.github.io/nigeria-map/", "_blank");
 	}
 
 	layer.on({
@@ -108,7 +108,7 @@ var initMap = function () {
 
 		// create the tile layer with correct attribution
 		var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-			osmAttrib='The data for the Burkina Faso region and department boundaries is published by <a target="_blank" href="http://www.mapmakerdata.co.uk.s3-website-eu-west-1.amazonaws.com/library/index.htm">MapMaker</a> | Map data &copy; <a target="_blank" href="http://www.openstreetmap.org/about">OpenStreetMap</a> contributors' + (!qs.embed ? "" : '| See the full website at <a target="_blank" href="http://digital-contraptions-imaginarium.github.io/Burkina-Faso-map/</a>'),
+			osmAttrib='The data for the regions and department boundaries is published by <a target="_blank" href="http://www.mapmakerdata.co.uk.s3-website-eu-west-1.amazonaws.com/library/index.htm">MapMaker</a> | Map data &copy; <a target="_blank" href="http://www.openstreetmap.org/about">OpenStreetMap</a> contributors' + (!qs.embed ? "" : '| See the full website at <a target="_blank" href="http://davetaz.github.io/nigeria-map/</a>'),
 			osm = new L.TileLayer(osmUrl, { minZoom: 1, maxZoom: 12, attribution: osmAttrib });		
 
 		// set up the data layers
@@ -134,7 +134,7 @@ var initMap = function () {
 			titleControl = L.control({ position: 'topleft' });
 			titleControl.onAdd = function (map) {
 			    this._div = L.DomUtil.create('div', 'titleControl'); 
-			    this._div.innerHTML = "<h1>Burkina-Faso-map</h1><p>This is an example interactive choropleth Burkina Faso map, built using <a href='http://leafletjs.com/'>Leaflet</a>. Please read <a href=\"https://github.com/Digital-Contraptions-Imaginarium/Burkina-Faso-map\">here</a> for more information.</p>";
+			    this._div.innerHTML = "<h1>Nigeria</h1><p>This is an example interactive choropleth map, built using <a href='http://leafletjs.com/'>Leaflet</a>. Please read <a href=\"https://github.com/davetaz/nigeria-map\">here</a> for more information.</p>";
 			    return this._div;
 			};
 			titleControl.addTo(map);
