@@ -1,11 +1,11 @@
 var	CONFIGURATION = {
 		"layers": {
 			// the order is relevant! from the bottom to the top one
-			//"Departments": {
-			//	"dataFile": "data/processed/burkinaFaso_departments.json",
-			//	"dataType": "geojson",
-			//	"colour": "orange",
-			//},
+			"Departments": {
+				"dataFile": "data/processed/nigeria_departments.json",
+				"dataType": "geojson",
+				"colour": "orange",
+			},
 			"Regions": {
 				"dataFile": "data/processed/nigeria_regions.json",
 				"dataType": "geojson",
